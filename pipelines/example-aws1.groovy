@@ -7,7 +7,9 @@ pipeline {
   stages {
     stage('AWS test Stage') {
       steps {
-        sh 'aws --region us-east-2 s3 ls'
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+          AWS("--region=us-east-2 s3 ls")
+        }
       }
     }
   }

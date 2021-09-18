@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Call shared library') {
       steps {
-        gitClone 'myFakeRepo'
+        gitClone 'https://github.com/VictorMorenoJimenez/jenkins-code-example.git'
       }
     }
   }

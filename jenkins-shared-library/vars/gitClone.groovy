@@ -1,7 +1,7 @@
-def call(String repository){
+def call(String repository, String reference){
   stage("Git clone repository ${repository}"){
     script {
-      git url: repository
+      git branch: reference, url: repository
     }
   }
 }

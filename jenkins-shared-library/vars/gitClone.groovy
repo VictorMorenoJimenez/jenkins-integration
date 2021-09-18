@@ -1,7 +1,9 @@
 def call(String repository){
-  script {
-    sh """
-        echo Cloning repository ${repository}
-    """
+  stage("Git clone repository ${repository}"){
+    steps {
+      script {
+        git url: repository
+      }
+    }
   }
 }

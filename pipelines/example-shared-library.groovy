@@ -1,4 +1,4 @@
-@Library("chs-basic-shared-library") _
+@Library('chs-basic-shared-library') _
 
 pipeline {
   agent {

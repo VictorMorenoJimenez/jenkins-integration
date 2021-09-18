@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Call shared library') {
       steps {
-        gitClone repository reference
+        gitClone(repository, reference)
       }
     }
   }

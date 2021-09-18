@@ -1,3 +1,5 @@
+@Library("chs-basic-shared-library") _
+
 pipeline {
   agent {
     label 'ecs'

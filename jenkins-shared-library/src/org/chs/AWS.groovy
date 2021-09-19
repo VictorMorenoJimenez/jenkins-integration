@@ -27,6 +27,8 @@ class AWS implements Serializable {
       command += p + ' '
     }
 
+    print(command)
+
     this.pipelineScript.retry(AWS_CALL_RETRIES){
       if(retry) {
         this.pipelineScript.sleep(AWS_CALL_RETRIES_WAIT)

@@ -8,9 +8,9 @@ node('ecs'){
   String reference = 'main'
   def awsCli = new AWS(this)
   def gitCli = new Git(this)
-  
+
   stage('AWS test Stage') {
-    gitCli.checkout(repository, reference)
+    //gitCli.checkout(repository, reference)
     awsCli.executeCommand(['s3', 'ls'])
   }
 }

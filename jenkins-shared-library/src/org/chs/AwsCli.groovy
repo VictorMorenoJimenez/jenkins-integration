@@ -47,4 +47,5 @@ class AwsCli implements Serializable {
     }
 
     return command
+  }
 }

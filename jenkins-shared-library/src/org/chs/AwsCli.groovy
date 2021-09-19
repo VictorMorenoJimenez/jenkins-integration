@@ -36,20 +36,4 @@ class AwsCli implements Serializable {
 
     return command_output
   }
-
-  def cdkNpxDeploy(Map context = [:], String region = AwsCli.REGION) {
-    String command = 'npx cdk deploy'
-    String contextArgument=''
-    context.each { entry -> 
-      contextArgument += ' --context '
-      contextArgument +- "${entry.key}=${entry.value}"
-    }
-    command += contextArgument
-
-    this.pipelineScript.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-      command_output = this.pipelineScript.sh(script: command, returnStdout: true)
-    }
-
-    return command_output
-  }
 }

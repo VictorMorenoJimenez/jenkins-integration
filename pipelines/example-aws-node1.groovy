@@ -1,6 +1,7 @@
 @Library ('chs-basic-shared-library') _
 import org.chs.AwsCli
 import org.chs.Git
+import org.chs.CdkCli
 
 
 node('ecs-node'){
@@ -8,6 +9,7 @@ node('ecs-node'){
   String cdkReference = params.CDK_REFERENCE
   def awsCli = new AwsCli(this)
   def gitCli = new Git(this)
+  def cdkCli = new CdkCli(this)
 
   stage('Clone repository') {
     gitCli.checkout(cdkRepository, cdkReference)
@@ -34,13 +36,13 @@ node('ecs-node'){
   }
 
   stage('Cdk synth') {
-    String cdkTemplate = sh(script:'npx cdk synth', returnStdout: true)
+    String cdkTemplate = cdkCli.synth()
     println('Cdk template to deploy')
     println(cdkTemplate)
   }
 
   stage('Cdk deploy stacks') {
-    String cdkOutput = awsCli.cdkNpxDeploy()
+    String cdkOutput = cdkCli.deploy()
     println(cdkOutput)
   }
 }

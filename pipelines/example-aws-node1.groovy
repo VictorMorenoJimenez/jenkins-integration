@@ -40,8 +40,7 @@ node('ecs-node'){
   }
 
   stage('Cdk deploy stacks') {
-    awsCli.cdkNpxDeploy()
-    String cdkOutput = sh(script:'npx cdk deploy', returnStdout: true)
+    String cdkOutput = awsCli.cdkNpxDeploy()
     println(cdkOutput)
   }
 }

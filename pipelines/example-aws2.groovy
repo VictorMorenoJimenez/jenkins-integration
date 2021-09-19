@@ -7,8 +7,8 @@ pipeline {
   }
   stages {
     stage('AWS test Stage') {
+      def awsCli = new AWS(this)
       steps {
-        def awsCli = new AWS(this)
         awsCli.executeCommand(['s3', 'ls'])
       }
     }

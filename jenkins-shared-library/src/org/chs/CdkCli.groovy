@@ -23,7 +23,7 @@ class CdkCli implements Serializable {
   }
 
   def destroy(Map context = [:], String region = AwsCli.REGION) {
-    String command = "npx cdk --region ${region} destroy --require-approval never"
+    String command = "npx cdk --region ${region} destroy --force"
     String contextArgument=''
     context.each { entry -> 
       contextArgument += ' --context '

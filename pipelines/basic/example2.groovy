@@ -12,7 +12,7 @@ pipeline {
     stage('Create new file') {
       steps {
         writeFile file: "output/file.txt", text: "This file is my useful, we need to save it."
-        writeFile file: "output/useless-file.txt", text: "This file is my useless, discard it."
+        writeFile file: "output/useless-file.md", text: "This file is my useless, discard it."
       }
     }
 

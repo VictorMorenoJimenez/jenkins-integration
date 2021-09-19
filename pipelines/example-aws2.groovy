@@ -10,7 +10,7 @@ node('ecs'){
   def gitCli = new Git(this)
 
   stage('AWS test Stage') {
-    //gitCli.checkout(repository, reference)
-    awsCli.executeCommand(['s3', 'ls'])
+    gitCli.checkout(repository, reference)
+    //awsCli.executeCommand(['s3', 'ls'])
   }
 }

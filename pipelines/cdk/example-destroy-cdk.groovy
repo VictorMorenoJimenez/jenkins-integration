@@ -8,7 +8,6 @@ node('ecs-node'){
   ansiColor('xterm'){
     String cdkRepository = params.CDK_REPOSITORY
     String cdkReference = params.CDK_REFERENCE
-    def awsCli = new AwsCli(this)
     def gitCli = new Git(this)
     def cdkCli = new CdkCli(this)
     def npmCli = new NpmCli(this)

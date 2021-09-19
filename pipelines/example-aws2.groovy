@@ -9,9 +9,9 @@ node('ecs'){
   def awsCli = new AwsCli(this)
   def gitCli = new Git(this)
 
-  stage('AWS test Stage') {
+  stage('AWS shared library') {
     //gitCli.checkout(repository, reference)
-    String command = awsCli.executeCommand(['s3', 'ls'])
-    println(command)
+    String commandOutput = awsCli.executeCommand(['s3', 'ls'], jsonOutput=true)
+    println(commandOutput)
   }
 }

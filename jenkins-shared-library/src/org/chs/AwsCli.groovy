@@ -12,12 +12,9 @@ class AwsCli implements Serializable {
     this.pipelineScript = pipelineScript
   }
 
-  def executeCommand(List params, String region = AwsCli.REGION) {
-    String ACCESS_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_CREDENTIALS_ACCESS_KEY_ID_ID)
-    String SECRET_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_SECRET_ACCESS_KEY_ID)
-    String command = "AWS_ACCESS_KEY_ID=${ACCESS_KEY_SECRET_ID} AWS_SECRET_ACCESS_KEY=${SECRET_KEY_SECRET_ID} aws --region ${region} "
-
-    /*String command = "AWS_ACCESS_KEY_ID=${ACCESS_KEY_SECRET_ID} AWS_SECRET_ACCESS_KEY=${SECRET_KEY_SECRET_ID} aws --region ${region} "
+  def executeCommand(List params, String region = AwsCli.REGION, boolean jsonOutput = false) {
+    String command = "aws --region ${region} "
+    String command_output = ''
     String output = ''
     boolean retry = false
 
@@ -26,8 +23,6 @@ class AwsCli implements Serializable {
       command += p + ' '
     }
 
-    this.pipelineScript.sh(script: "echo ${command}")
-
     this.pipelineScript.retry(AwsCli.AWS_CALL_RETRIES){
       if(retry) {
         this.pipelineScript.sleep(AwsCli.AWS_CALL_RETRIES_WAIT)
@@ -35,26 +30,17 @@ class AwsCli implements Serializable {
         retry = true
       }
 
-      String command_output = this.pipelineScript.sh(script: command, returnStdout: true)
+      this.pipelineScript.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+          command_output = this.pipelineScript.sh(script: command, returnStdout: true)
+      }
+    }
+
+    if (jsonOutput){
       output = this.pipelineScript.readJSON(text: command_output)
+    } else {
+      output = command_output
     }
-
-    return output
-  }*/
-
-    // Include params to AWSCLI call.
-    params.each { p ->
-      command += p + ' '
-    }
-
-    //output = this.pipelineScript.sh(script: 'aws s3 ls', returnStdout: true)
-    //String command_output = this.pipelineScript.sh(script: command, returnStdout: true)
-    //output = this.pipelineScript.readJSON(text: command_output)
-    String output = ''
-    this.pipelineScript.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        output = this.pipelineScript.sh(script: 'aws s3 ls', returnStdout: true)
-    }
-
+    
     return output
   }
 }

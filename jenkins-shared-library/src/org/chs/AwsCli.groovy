@@ -12,10 +12,9 @@ class AwsCli implements Serializable {
     this.pipelineScript = pipelineScript
   }
 
-  def executeCommand(List params, boolean jsonOutput, String region = AwsCli.REGION) {
+  def executeCommand(List params, String region = AwsCli.REGION) {
     String command = "aws --region ${region} "
     String command_output = ''
-    String output = ''
     boolean retry = false
 
     // Include params to AWSCLI call.
@@ -35,12 +34,6 @@ class AwsCli implements Serializable {
       }
     }
 
-    if (jsonOutput){
-      output = this.pipelineScript.readJSON(text: command_output)
-    } else {
-      output = command_output
-    }
-    
-    return output
+    return this.pipelineScript.readJSON(text: command_output)
   }
 }

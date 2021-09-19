@@ -22,6 +22,18 @@ class CdkCli implements Serializable {
     return this.executeCommand(command)
   }
 
+  def destroy(Map context = [:], String region = AwsCli.REGION) {
+    String command = 'npx cdk destroy --require-approval never'
+    String contextArgument=''
+    context.each { entry -> 
+      contextArgument += ' --context '
+      contextArgument +- "${entry.key}=${entry.value}"
+    }
+    command += contextArgument
+
+    return this.executeCommand(command)
+  }
+
   def synth(Map context = [:], String region = AwsCli.REGION) {
     String command = 'npx cdk synth'
     return this.executeCommand(command)

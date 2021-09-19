@@ -18,7 +18,7 @@ class AWS implements Serializable {
   def executeCommand(List params, String region = AWS.REGION) {
     String ACCESS_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_CREDENTIALS_ACCESS_KEY_ID_ID)
     String SECRET_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_SECRET_ACCESS_KEY_ID)
-    String command = "AWS_ACCESS_KEY_ID=${ACCESS_KEY_SECRET_ID} AWS_SECRET_ACCESS_KEY=${SECRET_KEY_SECRET_ID} ${AWSCLI.BINARY} --region ${region} "
+    String command = "AWS_ACCESS_KEY_ID=${ACCESS_KEY_SECRET_ID} AWS_SECRET_ACCESS_KEY=${SECRET_KEY_SECRET_ID} ${AWS.BINARY} --region ${region} "
     String output = ''
     boolean retry = false
 

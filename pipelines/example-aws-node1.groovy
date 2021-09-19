@@ -36,13 +36,13 @@ node('ecs-node'){
   }
 
   stage('Cdk synth') {
-    String cdkTemplate = cdkCli.synth()
+    String cdkTemplate = sh(script:'npx cdk synth', returnStdout: true)
     println('Cdk template to deploy')
     println(cdkTemplate)
   }
 
   stage('Cdk deploy stacks') {
-    String cdkOutput = cdkCli.deploy()
+    String cdkOutput = sh(script:'npx cdk deploy --require-approval never', returnStdout: true)
     println(cdkOutput)
   }
 }

@@ -11,12 +11,14 @@ class NpmCli implements Serializable {
   def install(String registry = 'https://registry.npmjs.org/') {
     String configRegistryOutput = sh(script:"npm config set registry ${registry}", returnStdout: true)
     String npmInstallOutput = sh(script: 'npm install', returnStdout: true)
-    String output = configRegistryOutput + '\n' + npmInstallOutput
-    return output
+    return configRegistryOutput + '\n' + npmInstallOutput
   }
 
   def test() {
-    String npmTestOutput = sh(script: 'npm run test', returnStdout: true)
-    return npmTestOutput
+    return sh(script: 'npm run test', returnStdout: true)
+  }
+
+  def build() {
+    return sh(script: 'npm run build', returnStdout: true)
   }
 }

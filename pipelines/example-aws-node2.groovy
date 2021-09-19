@@ -2,6 +2,7 @@
 import org.chs.AwsCli
 import org.chs.Git
 import org.chs.CdkCli
+import org.chs.NpmCli
 
 
 node('ecs-node'){
@@ -10,35 +11,27 @@ node('ecs-node'){
   def awsCli = new AwsCli(this)
   def gitCli = new Git(this)
   def cdkCli = new CdkCli(this)
+  def npmCli = new NpmCli(this)
 
   stage('Clone repository') {
     gitCli.checkout(cdkRepository, cdkReference)
   }
 
-  stage('Log in NPM registry') {
-    String logRegistryOutput = sh(script:'npm config set registry https://registry.npmjs.org/', returnStdout: true)
-    println(logRegistryOutput)
-  }
-
   stage('Install CDK project dependencies') {
-    String npmOutput = sh(script:'npm install', returnStdout: true)
-    println(npmOutput)
+    println(npmCli.install())
   }
 
   stage('Launch CDK tests') {
-    String cdkTestOutput = sh(script:'npm run test', returnStdout: true)
-    println(cdkTestOutput)
+    println(npmCli.test())
   }
 
   stage('Build CDK project') {
-    String npmBuildOutput = sh(script:'npm run build', returnStdout: true)
-    println(npmBuildOutput)
+    println(npmCli.build())
   }
 
   stage('Cdk synth') {
-    String cdkTemplate = cdkCli.synth()
     println('Cdk template to deploy')
-    println(cdkTemplate)
+    println(cdkCli.synth())
   }
 
   stage('Cdk deploy stacks') {

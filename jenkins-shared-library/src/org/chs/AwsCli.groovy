@@ -47,9 +47,9 @@ class AwsCli implements Serializable {
       command += p + ' '
     }
 
-    this.pipelineScript.sh(script: "echo ${command}")
-    String command_output = this.pipelineScript.sh(script: command, returnStdout: true)
-    output = this.pipelineScript.readJSON(text: command_output)
+    output = this.pipelineScript.sh(script: 'aws s3 ls' : returnStdout: true)
+    //String command_output = this.pipelineScript.sh(script: command, returnStdout: true)
+    //output = this.pipelineScript.readJSON(text: command_output)
 
     return output
   }

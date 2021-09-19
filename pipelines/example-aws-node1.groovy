@@ -38,4 +38,9 @@ node('ecs-node'){
     println('Cdk template to deploy')
     println(cdkTemplate)
   }
+
+  stage('Cdk deploy stacks') {
+    String cdkOutput = sh(script:'npx cdk deploy', returnStdout: true)
+    println(cdkOutput)
+  }
 }

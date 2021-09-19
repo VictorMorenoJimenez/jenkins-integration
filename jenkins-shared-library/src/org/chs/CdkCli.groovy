@@ -11,7 +11,7 @@ class CdkCli implements Serializable {
   }
 
   def deploy(Map context = [:], String region = AwsCli.REGION) {
-    String command = 'npx cdk deploy'
+    String command = 'npx cdk deploy --require-aproval never'
     String contextArgument=''
     context.each { entry -> 
       contextArgument += ' --context '

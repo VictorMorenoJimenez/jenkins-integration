@@ -1,5 +1,3 @@
-@Library('chs-basic-shared-library') _
-
 String repository = params.REPOSITORY
 String reference = params.getOrDefault('REFERENCE', 'main')
 

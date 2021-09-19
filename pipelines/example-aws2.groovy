@@ -1,3 +1,4 @@
+@Library ('chs-basic-shared-library') _
 import org.chs.AWS
 
 pipeline {

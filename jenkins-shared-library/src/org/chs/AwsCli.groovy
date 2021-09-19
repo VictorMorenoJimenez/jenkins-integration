@@ -47,9 +47,12 @@ class AwsCli implements Serializable {
       command += p + ' '
     }
 
-    output = this.pipelineScript.sh(script: 'aws s3 ls', returnStdout: true)
+    //output = this.pipelineScript.sh(script: 'aws s3 ls', returnStdout: true)
     //String command_output = this.pipelineScript.sh(script: command, returnStdout: true)
     //output = this.pipelineScript.readJSON(text: command_output)
+    this.pipelineScript.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        this.pipelineScript.sh(script: 'aws s3 ls', returnStdout: true)
+    }
 
     return output
   }

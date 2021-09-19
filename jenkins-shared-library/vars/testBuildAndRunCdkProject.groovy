@@ -7,9 +7,9 @@ def call(String repository, String reference, String awsRegion = AwsCli.REGION) 
   def gitCli = new Git(this)
   def cdkCli = new CdkCli(this)
   def npmCli = new NpmCli(this)
-  
+
   stage("Git clone repository ${repository}"){
-    gitCli.checkout(cdkRepository, cdkReference)
+    gitCli.checkout(repository, reference)
   }
 
   stage('Install CDK project dependencies') {

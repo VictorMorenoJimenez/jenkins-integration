@@ -13,7 +13,8 @@ class AwsCli implements Serializable {
   }
 
   def executeCommand(List params, String region = AwsCli.REGION) {
-    String ACCESS_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_CREDENTIALS_ACCESS_KEY_ID_ID)
+    String command = "AWS_ACCESS_KEY_ID=${ACCESS_KEY_SECRET_ID} AWS_SECRET_ACCESS_KEY=${SECRET_KEY_SECRET_ID} aws --region ${region} "
+    /*String ACCESS_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_CREDENTIALS_ACCESS_KEY_ID_ID)
     String SECRET_KEY_SECRET_ID = this.pipelineScript.credentials(Constants.JENKINS_AWS_SECRET_ACCESS_KEY_ID)
     String command = "AWS_ACCESS_KEY_ID=${ACCESS_KEY_SECRET_ID} AWS_SECRET_ACCESS_KEY=${SECRET_KEY_SECRET_ID} aws --region ${region} "
     String output = ''
@@ -38,5 +39,12 @@ class AwsCli implements Serializable {
     }
 
     return output
-  }
+  }*/
+
+    // Include params to AWSCLI call.
+    params.each { p ->
+      command += p + ' '
+    }
+
+    return command
 }

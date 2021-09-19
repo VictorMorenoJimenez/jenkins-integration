@@ -13,6 +13,11 @@ node('ecs-node'){
     gitCli.checkout(cdkRepository, cdkReference)
   }
 
+  stage('Log in NPM registry') {
+    String logRegistryOutput = sh(script:'npm config set registry https://registry.npmjs.org/', returnStdout: true)
+    println(logRegistryOutput)
+  }
+
   stage('Install CDK project dependencies') {
     String npmOutput = sh(script:'npm install', returnStdout: true)
     println(npmOutput)

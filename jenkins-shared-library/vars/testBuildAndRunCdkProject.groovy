@@ -3,11 +3,11 @@ import org.chs.Git
 import org.chs.CdkCli
 import org.chs.NpmCli
 
-def gitCli = new Git(this)
-def cdkCli = new CdkCli(this)
-def npmCli = new NpmCli(this)
-
 def call(String repository, String reference, String awsRegion = AwsCli.REGION) {
+  def gitCli = new Git(this)
+  def cdkCli = new CdkCli(this)
+  def npmCli = new NpmCli(this)
+  
   stage("Git clone repository ${repository}"){
     gitCli.checkout(cdkRepository, cdkReference)
   }

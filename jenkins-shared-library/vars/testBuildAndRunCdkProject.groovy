@@ -4,7 +4,7 @@ import org.chs.CdkCli
 import org.chs.NpmCli
 
 
-def call(String repository, String reference){
+def call(String repository, String reference, String awsRegion = AwsCli.REGION) {
   stage("Git clone repository ${repository}"){
     gitCli.checkout(cdkRepository, cdkReference)
   }
@@ -27,7 +27,7 @@ def call(String repository, String reference){
   }
 
   stage('Cdk deploy stacks') {
-    println(cdkCli.deploy())
+    println(cdkCli.deploy([:], awsRegion))
   }
 }
 

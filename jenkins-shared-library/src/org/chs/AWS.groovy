@@ -27,7 +27,7 @@ class AWS implements Serializable {
       command += p + ' '
     }
 
-    print(command)
+    println('Printing command ' + command)
 
     this.pipelineScript.retry(AWS_CALL_RETRIES){
       if(retry) {

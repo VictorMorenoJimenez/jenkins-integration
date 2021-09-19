@@ -15,16 +15,8 @@ class NpmCli implements Serializable {
     return output
   }
 
-  def synth(Map context = [:], String region = AwsCli.REGION) {
-    String command = 'npx cdk synth'
-    return this.executeCommand(command)
-  }
-
-  void executeCommand(String command){
-    String command_output = ''
-    this.pipelineScript.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-      command_output = this.pipelineScript.sh(script: command, returnStdout: true)
-    }
-    return command_output    
+  def test() {
+    String npmTestOutput = sh(script: 'npm run test', returnStdout: true)
+    return npmTestOutput
   }
 }

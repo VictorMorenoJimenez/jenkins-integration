@@ -35,7 +35,6 @@ node('ecs-node'){
   }
 
   stage('Cdk deploy stacks') {
-    String cdkOutput = cdkCli.deploy()
-    println(cdkOutput)
+    println(cdkCli.deploy())
   }
 }

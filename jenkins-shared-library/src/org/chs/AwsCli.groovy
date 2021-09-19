@@ -34,6 +34,6 @@ class AwsCli implements Serializable {
       }
     }
 
-    return this.pipelineScript.readJSON(text: command_output)
+    return command_output
   }
 }

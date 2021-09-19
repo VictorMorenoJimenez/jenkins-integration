@@ -42,7 +42,7 @@ node('ecs-node'){
   }
 
   stage('Cdk deploy stacks') {
-    this.pipelineScript.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-integration-ohio-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
       println(sh(script:'npx cdk deploy --require-approval never', returnStdout: true))
     }
   }

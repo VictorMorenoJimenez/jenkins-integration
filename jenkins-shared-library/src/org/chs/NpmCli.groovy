@@ -1,25 +1,18 @@
 package org.chs
 import org.chs.Constants
 
-class CdkCli implements Serializable {
-  static final String REGION = 'us-east-2'
-
+class NpmCli implements Serializable {
   private final def pipelineScript
 
-  CdkCli(def pipelineScript) {
+  NpmCli(def pipelineScript) {
     this.pipelineScript = pipelineScript
   }
 
-  def deploy(Map context = [:], String region = AwsCli.REGION) {
-    String command = 'npx cdk deploy --require-approval never'
-    String contextArgument=''
-    context.each { entry -> 
-      contextArgument += ' --context '
-      contextArgument +- "${entry.key}=${entry.value}"
-    }
-    command += contextArgument
-
-    return this.executeCommand(command)
+  def install(String registry = 'https://registry.npmjs.org/') {
+    String configRegistryOutput = sh(script:"npm config set registry ${registry}", returnStdout: true)
+    String npmInstallOutput = sh(script: 'npm install', returnStdout: true)
+    String output = configRegistryOutput + '\n' + npmInstallOutput
+    return output
   }
 
   def synth(Map context = [:], String region = AwsCli.REGION) {

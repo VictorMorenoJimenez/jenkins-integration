@@ -11,6 +11,6 @@ node('ecs-node'){
 
   stage('AWS shared library') {
     gitCli.checkout(cdkRepository, cdkReference)
-    sh(command: 'ls -larth', returnStdout: true)
+    sh(script: 'ls -larth', returnStdout: true)
   }
 }

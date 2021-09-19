@@ -33,8 +33,8 @@ class AWS implements Serializable {
       } else {
         retry = true
       }
-      
-      String command_output = steps.sh(script: command, returnStdout: true)
+
+      String command_output = this.pipelineScript.sh(script: command, returnStdout: true)
       output = this.pipelineScript.readJSON(text: command_output)
     }
 

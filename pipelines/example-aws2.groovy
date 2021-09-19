@@ -11,7 +11,6 @@ node('ecs'){
 
   stage('AWS test Stage') {
     //gitCli.checkout(repository, reference)
-    sh(command: 'cat /home/jenkins/workspace/aws-test-2@tmp/*/*')
     String command = awsCli.executeCommand(['s3', 'ls'])
     println(command)
   }

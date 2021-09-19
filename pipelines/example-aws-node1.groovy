@@ -5,7 +5,7 @@ import org.chs.Git
 
 node('ecs-node'){
   String cdkRepository = params.CDK_REPOSITORY
-  String reference = params.REFERENCE
+  String reference = params.CDK_REFERENCE
   def awsCli = new AwsCli(this)
   def gitCli = new Git(this)
 

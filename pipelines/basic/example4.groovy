@@ -1,19 +1,19 @@
 node('ecs'){
   try {
     List stagesDir = []
-    stages.push({
+    stagesDir.push({
       stage('Create directory 1') {
         sh(script: 'mkdir -p output')
       }      
     })
 
-    stages.push({
+    stagesDir.push({
       stage('Create directory 2') {
         sh(script: 'mkdir -p output2')
       }
     })
 
-    stages.push({
+    stagesDir.push({
       stage('Create directory 3') {
         sh(script: 'mkdir -p output2')
       }  

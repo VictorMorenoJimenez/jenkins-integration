@@ -15,7 +15,7 @@ node('ecs'){
       }
 
       stage('AnsiColor test') {
-        sh('echo -e "\033[31mThis is the end of the pipeline! We should clean WorkSpace now\033[0m"')
+        sh('ls -larth')
       }
     }
   } finally {

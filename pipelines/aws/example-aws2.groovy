@@ -10,7 +10,7 @@ node('ecs'){
   def gitCli = new Git(this)
 
   stage('AWS shared library') {
-    //gitCli.checkout(repository, reference)
+    gitCli.checkout(repository, reference)
     String commandOutput = awsCli.executeCommand(['s3', 'ls'])
     println(commandOutput)
   }

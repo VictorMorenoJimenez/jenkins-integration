@@ -13,6 +13,10 @@ node('ecs'){
       stage('Archive my new file') {
         archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
       }
+
+      stage('AnsiColor test') {
+        sh('echo -e "\033[31mThis is the end of the pipeline! We should clean WorkSpace now\033[0m"')
+      }
     }
   } finally {
     cleanWs(cleanWhenFailure: false, cleanWhenUnstable: false)

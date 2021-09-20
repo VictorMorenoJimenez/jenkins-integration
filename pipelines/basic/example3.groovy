@@ -21,12 +21,11 @@ pipeline {
         archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
       }
     }
-
-    post {
-      // Clean after build
-      always {
-        cleanWs(cleanWhenNotBuilt: false, deleteDirs: true, disableDeferredWipeout: true, notFailBuild: true)
-      }
+  }
+  post {
+    // Clean after build
+    always {
+      cleanWs(cleanWhenNotBuilt: false, deleteDirs: true, disableDeferredWipeout: true, notFailBuild: true)
     }
   }
 }

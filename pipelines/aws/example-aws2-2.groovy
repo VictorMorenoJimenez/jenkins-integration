@@ -7,13 +7,12 @@ pipeline {
     label 'ecs'
   }
 
-  String repository = 'https://github.com/VictorMorenoJimenez/jenkins-code-example.git'
-  String reference = 'main'
-  def awsCli = new AwsCli(this)
-  def gitCli = new Git(this)
-
   stages {
     stage('AWS shared library') {
+      String repository = 'https://github.com/VictorMorenoJimenez/jenkins-code-example.git'
+      String reference = 'main'
+      def awsCli = new AwsCli(this)
+      def gitCli = new Git(this)
       gitCli.checkout(repository, reference)
       String commandOutput = awsCli.executeCommand(['s3', 'ls'])
       println(commandOutput)

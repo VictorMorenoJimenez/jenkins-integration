@@ -15,7 +15,7 @@ class CdkCli implements Serializable {
     String contextArgument=''
     context.each { entry -> 
       contextArgument += ' --context '
-      contextArgument +- "${entry.key}=${entry.value}"
+      contextArgument += "${entry.key}=${entry.value}"
     }
     command += contextArgument
 
@@ -31,7 +31,7 @@ class CdkCli implements Serializable {
     String contextArgument=''
     context.each { entry -> 
       contextArgument += ' --context '
-      contextArgument +- "${entry.key}=${entry.value}"
+      contextArgument += "${entry.key}=${entry.value}"
     }
     command += contextArgument
 
@@ -44,7 +44,7 @@ class CdkCli implements Serializable {
     String contextArgument=''
     context.each { entry -> 
       contextArgument += ' --context '
-      contextArgument +- "${entry.key}=${entry.value}"
+      contextArgument += "${entry.key}=${entry.value}"
     }
     command += contextArgument
 

@@ -17,7 +17,7 @@ def cdkContext = [
 
 pipeline {
   agent {
-    label 'ecs'
+    label 'ecs-node'
   }
 
   stages {

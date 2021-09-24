@@ -48,7 +48,7 @@ pipeline {
     stage('Cdk synth') {
       steps {
         script {
-          println(cdkCli.synth())
+          println(cdkCli.synth(cdkContext))
           println('Cdk template to deploy')
         }
       }

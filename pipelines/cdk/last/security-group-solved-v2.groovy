@@ -33,7 +33,7 @@ node('ecs-node'){
 
   stage('Cdk synth') {
     println('Cdk template to deploy')
-    println(cdkCli.synth())
+    println(cdkCli.synth(cdkContext))
   }
 
   stage('Cdk deploy stacks') {

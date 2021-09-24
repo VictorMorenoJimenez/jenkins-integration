@@ -21,10 +21,10 @@ pipeline {
           }
         }    
       }
-    }
-    post {
-      always {
-        cleanWs(cleanWhenFailure: false, cleanWhenUnstable: false)
+      post {
+        always {
+          cleanWs(cleanWhenFailure: false, cleanWhenUnstable: false)
+        }
       }
     }
   }

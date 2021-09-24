@@ -40,6 +40,14 @@ class CdkCli implements Serializable {
 
   def synth(Map context = [:], String region = AwsCli.REGION) {
     String command = 'npx cdk synth'
+
+    String contextArgument=''
+    context.each { entry -> 
+      contextArgument += ' --context '
+      contextArgument +- "${entry.key}=${entry.value}"
+    }
+    command += contextArgument
+
     return this.executeCommand(command)
   }
 

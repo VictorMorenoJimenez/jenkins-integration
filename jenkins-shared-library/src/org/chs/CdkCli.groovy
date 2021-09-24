@@ -21,9 +21,7 @@ class CdkCli implements Serializable {
 
     command += ' --require-approval never'
 
-    return command
-
-    //return this.executeCommand(command)
+    return this.executeCommand(command)
   }
 
   def destroy(Map context = [:], String region = AwsCli.REGION) {

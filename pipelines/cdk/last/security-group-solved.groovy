@@ -49,8 +49,7 @@ pipeline {
       steps {
         script {
           println('Cdk template to deploy')
-          println(cdkContext)
-          //println(cdkCli.synth(cdkContext))
+          println(cdkCli.synth(cdkContext))
         }
       }
     }
@@ -58,8 +57,7 @@ pipeline {
     stage('Cdk deploy stacks') {
       steps {
         script {
-          //println(cdkCli.deploy(cdkContext))
-          println('deploy')
+          println(cdkCli.deploy(cdkContext))
         }
       }
     }

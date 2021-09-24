@@ -57,7 +57,8 @@ pipeline {
     stage('Cdk deploy stacks') {
       steps {
         script {
-          println(cdkCli.deploy(cdkContext))
+          println(cdkContext)
+          //println(cdkCli.deploy(cdkContext))
         }
       }
     }

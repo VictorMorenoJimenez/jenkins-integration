@@ -8,6 +8,8 @@ def awsCli = new AwsCli(this)
 def gitCli = new Git(this)
 def cdkCli = new CdkCli(this)
 def npmCli = new NpmCli(this)
+def cdkRepository = params.CDK_REPOSITORY
+def cdkReference = params.CDK_REFERENCE
 def cdkContext = [
   ipToAllow: '145.1.253.134',
   securityGroupId: 'sg-0686e4c67f9a948ce'

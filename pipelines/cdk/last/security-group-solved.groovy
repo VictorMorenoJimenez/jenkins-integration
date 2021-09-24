@@ -21,32 +21,42 @@ pipeline {
   stages {
     stage('Clone repository') {
       steps{
-        gitCli.checkout(cdkRepository, cdkReference)
+        script {
+          gitCli.checkout(cdkRepository, cdkReference)
+        }
       }
     }
 
     stage('Install CDK project dependencies') {
       steps {
-        println(npmCli.install())
+        script {
+          println(npmCli.install())
+        }
       }
     }
 
     stage('Launch CDK tests') {
       steps {
-        println(npmCli.test())
+        script {
+          println(npmCli.test())
+        }
       }
     }
 
     stage('Build CDK project') {
       steps {
-        println(npmCli.build())
+        script {
+          println(npmCli.build())
+        }
       }
     }
 
     stage('Cdk synth') {
       steps {
-        println(cdkCli.synth())
-        println('Cdk template to deploy')
+        script {
+          println(cdkCli.synth())
+          println('Cdk template to deploy')
+        }
       }
     }
 

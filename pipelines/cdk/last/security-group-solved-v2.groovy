@@ -27,10 +27,6 @@ node('ecs-node'){
     println(npmCli.install())
   }
 
-  stage('Launch CDK tests') {
-    println(npmCli.test())
-  }
-
   stage('Build CDK project') {
     println(npmCli.build())
   }

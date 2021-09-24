@@ -37,14 +37,6 @@ pipeline {
       }
     }
 
-    stage('Launch CDK tests') {
-      steps {
-        script {
-          println(npmCli.test())
-        }
-      }
-    }
-
     stage('Build CDK project') {
       steps {
         script {

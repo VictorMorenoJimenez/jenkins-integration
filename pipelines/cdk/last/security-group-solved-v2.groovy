@@ -8,9 +8,11 @@ import org.chs.NpmCli
 node('ecs-node'){
   String cdkRepository = params.CDK_REPOSITORY
   String cdkReference = params.CDK_REFERENCE
+  String ip = params.IP_TO_ALLOW
+  String sgId = params.SG_ID
   def cdkContext = [
-    ipToAllow: '145.1.253.134',
-    securityGroupId: 'sg-0686e4c67f9a948ce'
+    ipToAllow: ip,
+    securityGroupId: sgId
   ]
   def awsCli = new AwsCli(this)
   def gitCli = new Git(this)
